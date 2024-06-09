@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app/Shopping.dart';
+import 'package:toast_notification/ToasterType.dart';
+import 'package:toast_notification/toast_notification.dart';
 import 'consts.dart';
 class CommonWidgets{
   static Widget titre(){
@@ -16,7 +18,7 @@ class CommonWidgets{
     );
   }
 
-
+  //Permutter les icones
   static Icon checkIcon(Shopping shop){
     IconData checkIcon=shop.checked == true ?  Icons.check_circle :  Icons.circle_outlined;
     Icon icon=Icon(
@@ -26,4 +28,13 @@ class CommonWidgets{
     );
     return icon;
   }
+
+  //Afficher un message
+  static showToast({required BuildContext context, required String message, Color? couleur=success}){
+    ToastMe(
+        text: message,
+        backgroundColor: couleur,
+        duration: 1000, type: ToasterType.Check).showToast(context);
+  }
+
 }

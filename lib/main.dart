@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      title: 'Shopping List App',
+      title: appName,
       theme: ThemeData(
         primaryColor: primary,
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-
       home: const MyHomePage(title: 'Accueil'),
     );
   }
@@ -72,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Card(
                             elevation: 3,
                             child: ListTile(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: const EdgeInsets.all(8),
                               onTap: (){ },
                               title:  Text(
                                   shoppingList[index].name,
@@ -87,13 +86,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                     shoppingList[index].checked=!shoppingList[index].checked;
                                     //Changement de l'icone
                                     radioButtonIcon=CommonWidgets.checkIcon(shoppingList[index]);
+                                    //Affichage de la notification
+                                    shoppingList[index].checked ?
+                                    CommonWidgets.showToast(context: context, message: "Course validée"):
+                                    CommonWidgets.showToast(context: context, message: "Course annulée",couleur: danger);
+
                                   }),
                                   child: radioButtonIcon
                               ),
                               trailing: GestureDetector(
                                 onTap: (){
                                   setState(() {
-                                    deleteShop(index, shoppingList);
+                                    deleteShop(index, shoppingList,context);
                                   });
                                 },
                                 child: const Icon(
