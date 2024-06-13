@@ -1,17 +1,20 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app/Shopping.dart';
 import 'package:toast_notification/ToasterType.dart';
 import 'package:toast_notification/toast_notification.dart';
 import 'consts.dart';
 class CommonWidgets{
-  static Widget titre(){
+
+  TextEditingController nameCtrl = TextEditingController();
+
+  static Text titre(){
     return const Text(
         appName,
-        textAlign: TextAlign.center,
         style: TextStyle(
           color:primary,
-          fontSize: 22,
+          fontSize: 24,
           fontWeight: FontWeight.w900
         )
 
@@ -30,11 +33,32 @@ class CommonWidgets{
   }
 
   //Afficher un message
-  static showToast({required BuildContext context, required String message, Color? couleur=success}){
+  static void showToast({required BuildContext context,
+    required String message,
+    Color? couleur=success,
+    ToasterType? toasterType=ToasterType.Check
+  }){
     ToastMe(
         text: message,
         backgroundColor: couleur,
-        duration: 1000, type: ToasterType.Check).showToast(context);
+        duration: 1000, type: toasterType!).showToast(context);
   }
 
+
+
+
+  //Button du formulaire
+  static  ElevatedButton elevatedButton(Color color,String title,VoidCallback func){
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          fixedSize: const Size.fromWidth(100),
+          shape:RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10), // Définir le rayon des bords arrondis
+          )
+      ),
+      onPressed: func,
+      child: Text(title,style: const TextStyle(color: secondary),),
+    );
+  }
 }

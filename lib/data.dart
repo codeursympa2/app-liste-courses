@@ -10,4 +10,4 @@ List<Shopping> shoppingList=[
   Shopping("Lire le coran", true),
   Shopping("Maquetter mon app", true),
   Shopping("Acheter le savon", false),
-];
+].reversed.toList();
