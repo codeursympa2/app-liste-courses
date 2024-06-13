@@ -1,13 +1,13 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:shopping_list_app/Shopping.dart';
+import 'package:shopping_list_app/Consts/strings.dart';
+import 'package:shopping_list_app/Models/Shopping.dart';
 import 'package:toast_notification/ToasterType.dart';
 import 'package:toast_notification/toast_notification.dart';
-import 'consts.dart';
+import '../../Consts/colors.dart';
 class CommonWidgets{
 
-  TextEditingController nameCtrl = TextEditingController();
 
   static Text titre(){
     return const Text(
@@ -43,9 +43,6 @@ class CommonWidgets{
         backgroundColor: couleur,
         duration: 1000, type: toasterType!).showToast(context);
   }
-
-
-
 
   //Button du formulaire
   static  ElevatedButton elevatedButton(Color color,String title,VoidCallback func){
